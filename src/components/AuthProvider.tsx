@@ -1,15 +1,12 @@
 "use client"
-import React, { createContext, useContext, useEffect, useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { getCurrentUser, User } from '@/lib/auth';
 
 interface AuthContextType {
   user: User | null;
   loading: boolean;
 }
-
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { getCurrentUser, User } from '@/lib/auth';
 
 const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
 
