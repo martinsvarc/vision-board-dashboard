@@ -97,7 +97,7 @@ export default function League() {
     created_at: new Date().toISOString().split('T')[0]
   }
 
- const renderUserProfile = (user: LeagueData & { rank: number }) => {
+const renderUserProfile = (user: LeagueData & { rank: number }) => {
   const isCurrentUser = user.id === 'current-user'
   const rank = user.rank !== undefined ? user.rank : 0 // Provide a default value if rank is undefined
   const borderColor = getBorderColor(rank, isCurrentUser)
