@@ -83,7 +83,7 @@ export default function League() {
     }
   }
 
-  const currentUserProfile = {
+  const currentUserProfile: LeagueData = {
     id: 'current-user',
     user_name: 'You',
     overall_effectiveness: 93,
@@ -93,7 +93,8 @@ export default function League() {
       'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bronze-league.png',
       'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-day-streak.png',
       'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/25-calls.png'
-    ]
+    ],
+    created_at: new Date().toISOString().split('T')[0]
   }
 
   const renderUserProfile = (user: LeagueData & { rank: number }) => {
