@@ -3,30 +3,38 @@ import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 
 interface AuthContextType {
-  memberId: string | null
-  loading: boolean
+  user: User | null;
+  loading: boolean;
 }
 
-const AuthContext = createContext<AuthContextType>({ memberId: null, loading: true })
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { getCurrentUser, User } from '@/lib/auth';
+
+const AuthContext = createContext<AuthContextType>({ user: null, loading: true });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [memberId, setMemberId] = useState<string | null>(null)
-  const [loading, setLoading] = useState(true)
-  const searchParams = useSearchParams()
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const id = searchParams.get('memberId')
-    setMemberId(id)
-    setLoading(false)
-  }, [searchParams])
+    async function fetchUser() {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+      setLoading(false);
+    }
+
+    fetchUser();
+  }, [searchParams]);
 
   return (
-    <AuthContext.Provider value={{ memberId, loading }}>
+    <AuthContext.Provider value={{ user, loading }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
 
 export function useAuth() {
-  return useContext(AuthContext)
+  return useContext(AuthContext);
 }
