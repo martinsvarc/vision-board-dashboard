@@ -124,26 +124,7 @@ const renderUserProfile = (user: LeagueData & { rank: number }) => {
       </div>
     </div>
   );
-};
-
-export default function League() {
-  const [category, setCategory] = React.useState<'daily' | 'weekly' | 'monthly'>('daily');
-  const [leagueData] = React.useState<LeagueData[]>(mockLeagueData);
-  const [chartData] = React.useState(mockChartData);
-
-  const currentUserProfile: LeagueData = {
-    id: 'current-user',
-    user_name: 'You',
-    overall_effectiveness: 93,
-    rank: 10,
-    profile_image: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=80&auto=format&fit=crop',
-    badges: [
-      'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/bronze-league.png',
-      'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/10-day-streak.png',
-      'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/25-calls.png'
-    ],
-    created_at: new Date().toISOString().split('T')[0]
-  };
+}
 
   return (
     <Card className="bg-white shadow-lg h-full">
@@ -152,13 +133,13 @@ export default function League() {
           <h2 className="text-[25px] font-bold text-[#556bc7] font-montserrat text-center">League</h2>
           <Tabs value={category} onValueChange={(value) => setCategory(value as 'daily' | 'weekly' | 'monthly')} className="w-full">
             <TabsList className="w-full grid grid-cols-3 bg-gray-50/50 p-1.5 rounded-full">
-              <TabsTrigger value="daily" className="relative z-10 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-600 transition-all duration-300 hover:text-gray-900 data-[state=active]:bg-[#fbb350] data-[state=active]:text-white">
+              <TabsTrigger value="daily" className="relative z-10 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-600 transition-all duration-300 hover:text-gray-900 data-[state=acti[...]
                 Daily League
               </TabsTrigger>
-              <TabsTrigger value="weekly" className="relative z-10 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-600 transition-all duration-300 hover:text-gray-900 data-[state=active]:bg-[#fbb350] data-[state=active]:text-white">
+              <TabsTrigger value="weekly" className="relative z-10 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-600 transition-all duration-300 hover:text-gray-900 data-[state=act[...]
                 Weekly League
               </TabsTrigger>
-              <TabsTrigger value="monthly" className="relative z-10 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-600 transition-all duration-300 hover:text-gray-900 data-[state=active]:bg-[#fbb350] data-[state=active]:text-white">
+              <TabsTrigger value="monthly" className="relative z-10 rounded-full px-3 py-1.5 text-xs sm:text-sm font-medium text-gray-600 transition-all duration-300 hover:text-gray-900 data-[state=ac[...]
                 Monthly League
               </TabsTrigger>
             </TabsList>
