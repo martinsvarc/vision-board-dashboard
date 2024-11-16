@@ -2,6 +2,10 @@ import * as React from "react"
 import * as ProgressPrimitive from "@radix-ui/react-progress"
 import { cn } from "@/lib/utils"
 
+interface CustomStyle extends React.CSSProperties {
+  '--progress-foreground'?: string;
+}
+
 const Progress = React.forwardRef<
   React.ElementRef<typeof ProgressPrimitive.Root>,
   React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>
@@ -18,7 +22,7 @@ const Progress = React.forwardRef<
       className="h-full w-full flex-1 transition-all"
       style={{ 
         transform: `translateX(-${100 - (value || 0)}%)`,
-        backgroundColor: props.style?.['--progress-foreground'] || 'hsl(var(--primary))'
+        backgroundColor: (props.style as CustomStyle)?.['--progress-foreground'] || 'hsl(var(--primary))'
       }}
     />
   </ProgressPrimitive.Root>
