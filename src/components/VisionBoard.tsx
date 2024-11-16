@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/popover";
 import { Palette, Upload } from 'lucide-react';
 import { useAuth } from '@/components/AuthProvider';
-import { getVisionItems, saveVisionItem, updateVisionItem, deleteVisionItem } from '@/api/vision-board';
+import { getVisionItems, saveVisionItem, updateVisionItem, deleteVisionItem } from '@/lib/api'
 
 interface VisionItem {
   id: string;
