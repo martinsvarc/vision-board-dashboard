@@ -97,50 +97,50 @@ export default function League() {
     created_at: new Date().toISOString().split('T')[0]
   }
 
-  const renderUserProfile = (user: LeagueData & { rank: number }) => {
-    const isCurrentUser = user.id === 'current-user'
-    const rank = user.rank
-    const borderColor = getBorderColor(rank, isCurrentUser)
+ const renderUserProfile = (user: LeagueData & { rank: number }) => {
+  const isCurrentUser = user.id === 'current-user'
+  const rank = user.rank !== undefined ? user.rank : 0 // Provide a default value if rank is undefined
+  const borderColor = getBorderColor(rank, isCurrentUser)
 
-    return (
-      <div
-        key={user.id}
-        className={`
-          flex items-center gap-2 p-2 rounded-[20px] shadow-sm
-          bg-white border-2 ${borderColor}
-        `}
-      >
-        <div className="flex-none w-6 text-sm font-medium text-gray-900">
-          <span>#{rank}</span>
-        </div>
-        <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
-          <img
-            src={user.profile_image}
-            alt={user.user_name}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-1.5 text-sm font-medium text-gray-900 truncate">
-            <span className="truncate">{user.user_name}</span>
-            <div className="flex-shrink-0 flex items-center">
-              {user.badges?.map((badge, index) => (
-                <img
-                  key={index}
-                  src={badge}
-                  alt={`Badge ${index + 1}`}
-                  className="w-4 h-4 object-contain"
-                />
-              ))}
-            </div>
+  return (
+    <div
+      key={user.id}
+      className={`
+        flex items-center gap-2 p-2 rounded-[20px] shadow-sm
+        bg-white border-2 ${borderColor}
+      `}
+    >
+      <div className="flex-none w-6 text-sm font-medium text-gray-900">
+        <span>#{rank}</span>
+      </div>
+      <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
+        <img
+          src={user.profile_image}
+          alt={user.user_name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center gap-1.5 text-sm font-medium text-gray-900 truncate">
+          <span className="truncate">{user.user_name}</span>
+          <div className="flex-shrink-0 flex items-center">
+            {user.badges?.map((badge, index) => (
+              <img
+                key={index}
+                src={badge}
+                alt={`Badge ${index + 1}`}
+                className="w-4 h-4 object-contain"
+              />
+            ))}
           </div>
         </div>
-        <div className="text-sm font-medium text-gray-900 flex-shrink-0">
-          {user.overall_effectiveness} pts
-        </div>
       </div>
-    )
-  }
+      <div className="text-sm font-medium text-gray-900 flex-shrink-0">
+        {user.overall_effectiveness} pts
+      </div>
+    </div>
+  )
+}
 
   return (
     <Card className="bg-white shadow-lg h-full">
